@@ -31,7 +31,7 @@ public class MainVerticle extends AbstractVerticle {
         response.putHeader("Content-Type", "text/html");
 
         // Send HTML content as the response
-        response.end("<html><body><h1>Welcome to your Vert.x v1.2.0 application!</h1></body></html>");
+        response.end("<html><body><h1>Welcome to your Vert.x v1.0 application!</h1></body></html>");
     }
 
     public static void main(String[] args) {
