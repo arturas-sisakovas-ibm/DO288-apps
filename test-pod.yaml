@@ -1,0 +1,23 @@
+kind: Pod
+apiVersion: v1
+metadata:
+  name: busybox-test
+  namespace: test-cfc
+  labels:
+    app: busybox-test
+spec:
+  restartPolicy: Never
+  containers:
+    - resources:
+        limits:
+          cpu: 100m
+          memory: 64Mi
+        requests:
+          cpu: 10m
+          memory: 16Mi
+      command:
+        - /bin/sh
+        - '-c'
+        - sleep 3600
+      name: busybox
+      image: 'repo.redhat.ddd.aaa/busybox:1.35'
