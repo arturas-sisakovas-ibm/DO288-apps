@@ -1,0 +1,30 @@
+apiVersion: security.openshift.io/v1
+kind: SecurityContextConstraints
+metadata:
+  name: checkpoint-restore-cri-proxy
+allowHostDirVolumePlugin: true
+allowPrivilegedContainer: false
+allowPrivilegeEscalation: false
+
+runAsUser:
+  type: RunAsAny
+
+seLinuxContext:
+  type: MustRunAs
+
+fsGroup:
+  type: RunAsAny
+
+supplementalGroups:
+  type: RunAsAny
+
+volumes:
+  - hostPath
+  - configMap
+  - secret
+  - projected
+  - downwardAPI
+  - emptyDir
+
+users:
+  - system:serviceaccount:checkpoint-restore-operator:cri-restore-proxy

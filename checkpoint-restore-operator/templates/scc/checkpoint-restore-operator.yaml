@@ -1,0 +1,38 @@
+allowHostPorts: false
+priority: null
+requiredDropCapabilities: null
+allowPrivilegedContainer: true
+runAsUser:
+  type: RunAsAny
+users:
+  - 'system:serviceaccount:checkpoint-restore-operator:checkpoint-restore-operator-controller-manager'
+allowHostDirVolumePlugin: true
+allowHostIPC: false
+seLinuxContext:
+  type: RunAsAny
+readOnlyRootFilesystem: false
+metadata:
+  name: checkpoint-restore-operator
+fsGroup:
+  type: RunAsAny
+groups: []
+userNamespaceLevel: AllowHostLevel
+kind: SecurityContextConstraints
+defaultAddCapabilities: null
+supplementalGroups:
+  type: RunAsAny
+volumes:
+  - configMap
+  - downwardAPI
+  - emptyDir
+  - hostPath
+  - persistentVolumeClaim
+  - projected
+  - secret
+allowHostPID: false
+allowHostNetwork: false
+allowPrivilegeEscalation: true
+apiVersion: security.openshift.io/v1
+allowedCapabilities:
+  - DAC_OVERRIDE
+  - FOWNER
