@@ -148,6 +148,8 @@ criProxy:
 
   securityContext:
     runAsUser: 0
+    seLinuxOptions:
+      type: spc_t
     allowPrivilegeEscalation: false
     readOnlyRootFilesystem: true
     capabilities:

@@ -10,7 +10,7 @@ runAsUser:
   type: RunAsAny
 
 seLinuxContext:
-  type: MustRunAs
+  type: RunAsAny
 
 fsGroup:
   type: RunAsAny

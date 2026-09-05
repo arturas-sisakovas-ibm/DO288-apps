@@ -16,7 +16,6 @@ metadata:
 fsGroup:
   type: RunAsAny
 groups: []
-userNamespaceLevel: AllowHostLevel
 kind: SecurityContextConstraints
 defaultAddCapabilities: null
 supplementalGroups:

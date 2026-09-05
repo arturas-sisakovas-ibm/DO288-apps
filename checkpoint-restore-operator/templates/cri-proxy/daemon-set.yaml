@@ -75,7 +75,7 @@ spec:
             {{- toYaml .Values.criProxy.resources | nindent 12 }}
           volumeMounts:
             - name: runtime-sock
-              mountPath: {{ dir .Values.criProxy.upstreamSocket }}
+              mountPath: {{ .Values.criProxy.upstreamSocket }}
               readOnly: true
             - name: proxy-sock
               mountPath: {{ dir .Values.criProxy.listenSocket }}
@@ -85,8 +85,8 @@ spec:
       volumes:
         - name: runtime-sock
           hostPath:
-            path: {{ dir .Values.criProxy.upstreamSocket }}
-            type: Directory
+            path: {{ .Values.criProxy.upstreamSocket }}
+            type: Socket
         - name: proxy-sock
           hostPath:
             path: {{ dir .Values.criProxy.listenSocket }}
