@@ -1,0 +1,12 @@
+apiVersion: criu.org/v1
+kind: CheckpointSchedule
+metadata:
+  name: checkpoint-todo
+  namespace: mirror
+spec:
+  namespace: todo-checkpoint
+  selector:
+    matchLabels:
+      app: checkpoint-todo
+  triggers:
+    interval: 1m

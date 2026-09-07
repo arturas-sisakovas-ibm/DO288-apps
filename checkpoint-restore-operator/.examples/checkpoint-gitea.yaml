@@ -1,0 +1,12 @@
+apiVersion: criu.org/v1
+kind: CheckpointSchedule
+metadata:
+  name: gitea-checkpoints
+  namespace: mirror
+spec:
+  namespace: mirror
+  selector:
+    matchLabels:
+      app: gitea-local
+  triggers:
+    interval: 1m

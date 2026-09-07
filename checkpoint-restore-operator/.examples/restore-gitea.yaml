@@ -1,0 +1,44 @@
+---
+apiVersion: criu.org/v1
+kind: PodRestore
+metadata:
+  name: gitea-restore
+spec:
+  targetNode: crc
+  checkpoints:
+    - container: gitea
+      path: /var/lib/kubelet/checkpoints/checkpoint-gitea-local-76d7f9cfdf-mhm5w_mirror-gitea-2026-09-05T16:10:15Z.tar
+  template:
+    metadata:
+        labels:
+          app: gitea-local
+    spec:
+      containers:
+        - name: gitea
+          env:
+            - name: GITEA__packages__ENABLED
+              value: 'true'
+            - name: GITEA__packages__TYPE__DOCKER__ENABLED
+              value: 'true'
+            - name: GITEA__database__DB_TYPE
+              value: mysql
+            - name: GITEA__database__HOST
+              value: gitea-mysql:3306
+            - name: GITEA__database__NAME
+              value: gitea
+            - name: GITEA__DATABASE__USER
+              value: dbuser
+            - name: GITEA__DATABASE_PASSWD
+              value: dbuser
+          volumeMounts:
+            - name: gitea-data
+              mountPath: /var/lib/gitea
+            - name: gitea-config
+              mountPath: /etc/gitea
+      volumes:
+        - name: gitea-data
+          persistentVolumeClaim:
+            claimName: gitea-data
+        - name: gitea-config
+          persistentVolumeClaim:
+            claimName: gitea-config

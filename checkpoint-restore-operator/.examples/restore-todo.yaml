@@ -1,0 +1,19 @@
+---
+apiVersion: criu.org/v1
+kind: PodRestore
+metadata:
+  name: todo-restore
+  namespace: todo-checkpoint
+  labels:
+    app: checkpoint-todo
+spec:
+  targetNode: crc
+  checkpoints:
+    - container: app
+      path: /var/lib/kubelet/checkpoints/checkpoint-todo-restore_todo-checkpoint-app-2026-09-05T23:24:44Z.tar
+  template:
+    spec:
+      containers:
+        - name: app
+          ports:
+            - containerPort: 8080
