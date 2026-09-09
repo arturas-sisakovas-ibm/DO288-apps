@@ -1,0 +1,20 @@
+apiVersion: machineconfiguration.openshift.io/v1
+kind: MachineConfigPool
+metadata:
+  name: checkpoint-canary
+  labels:
+    pools.operator.machineconfiguration.openshift.io/checkpoint-canary: ""
+spec:
+  machineConfigSelector:
+    matchExpressions:
+      - key: machineconfiguration.openshift.io/role
+        operator: In
+        values:
+          - worker
+          - checkpoint-canary
+
+  nodeSelector:
+    matchLabels:
+      node-role.kubernetes.io/checkpoint-canary: ""
+
+  maxUnavailable: 1
