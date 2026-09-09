@@ -1,0 +1,12 @@
+apiVersion: machineconfiguration.openshift.io/v1
+kind: KubeletConfig
+metadata:
+  name: checkpoint-restore-proxy
+spec:
+  machineConfigPoolSelector:
+    matchLabels:
+      pools.operator.machineconfiguration.openshift.io/checkpoint-canary: ""
+
+  kubeletConfig:
+    containerRuntimeEndpoint: "unix:///run/cr-restore-proxy/cri-proxy.sock"
+    imageServiceEndpoint: "unix:///run/cr-restore-proxy/cri-proxy.sock"
