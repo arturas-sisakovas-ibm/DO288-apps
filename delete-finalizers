@@ -1,0 +1,1 @@
+for r in $(kubectl get kafkatopic -n NAMESPACE -o name); do kubectl patch "$r" -n NAMESPACE --type=merge -p '{"metadata":{"finalizers":null}}'; done
